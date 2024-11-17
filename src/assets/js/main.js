@@ -4,6 +4,9 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+import breakpoints from '../js/breakpoints.min.js';
+import browser from '../js/browser.min.js';
+
 (function($) {
 
 	var	$window = $(window),

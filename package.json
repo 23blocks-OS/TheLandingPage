@@ -29,6 +29,7 @@
     "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
-    "css-minimizer-webpack-plugin": "^7.0.0"
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "jquery": "^3.7.1"
   }
 }
