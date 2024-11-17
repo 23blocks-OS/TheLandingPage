@@ -1,9 +1,7 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -11,7 +9,6 @@ module.exports = {
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
     },
-    mode: 'production',
     module: {
         rules: [
             {
@@ -41,6 +38,21 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            context: 'src/assets/images',
+                            outputPath: 'images',
+                            publicPath: 'images',
+                            useRelativePaths: true,
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [
@@ -53,17 +65,4 @@ module.exports = {
             filename: './index.html',
         }),
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    compress: {
-                        drop_console: true,
-                    },
-                },
-            }),
-            // new OptimizeCSSAssetsPlugin({}),
-        ],
-    },
 };
