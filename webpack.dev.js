@@ -12,6 +12,7 @@ module.exports = merge(common, {
         port: 9000,
         open: true,
         hot: true,
+        historyApiFallback: true, // Add this line
     },
     devtool: 'inline-source-map',
 });

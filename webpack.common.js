@@ -39,7 +39,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/i,
+                test: /\.(png|jpeg|gif|svg)$/i,
                 use: [
                     {
                         loader: 'file-loader',
@@ -63,6 +63,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: './index.html',
+        }),
+          // Add more HtmlWebpackPlugin instances if you have multiple HTML files
+          new HtmlWebpackPlugin({
+            template: './src/elements.html',
+            filename: './elements.html',
         }),
     ],
 };
