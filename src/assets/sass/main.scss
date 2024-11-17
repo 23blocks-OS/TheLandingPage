@@ -1533,9 +1533,9 @@
 		}
 
 		#header {
-			background: transparent;
+			background: _palette(bg);
 			box-shadow: none;
-			position: absolute;
+			//position: absolute;
 		}
 	}
 
