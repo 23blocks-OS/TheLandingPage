@@ -1,2 +1,2 @@
-import './assets/css/main.scss';
+import './assets/sass/main.scss';
 import './assets/js/main.js';

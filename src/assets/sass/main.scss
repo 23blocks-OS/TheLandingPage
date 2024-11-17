@@ -579,7 +579,7 @@
 	}
 
 	input[type="checkbox"],
-	input[type="radio"], {
+	input[type="radio"] {
 		@include vendor('appearance', 'none');
 		display: block;
 		float: left;
@@ -754,7 +754,7 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			background-image: url('images/overlay.png');
+			background-image: url('../images/overlay.png');
 			width: 100%;
 			height: 100%;
 			z-index: 1;
@@ -1125,7 +1125,7 @@
 		z-index: 1;
 
 		&:before {
-			background-image: url('images/arrow.svg');
+			background-image: url('../images/arrow.svg');
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: contain;
@@ -1161,7 +1161,7 @@
 		}
 
 		&:before {
-			background-image: url('images/overlay.png');
+			background-image: url('../images/overlay.png');
 			content: '';
 			display: block;
 			height: 100%;
@@ -1544,7 +1544,7 @@
 	#banner {
 		background-attachment: fixed;
 		background-color: _palette(accent2);
-		background-image: url('../../images/banner.jpg');
+		background-image: url('../images/banner.jpg');
 		background-position: center center;
 		background-size: cover;
 		box-shadow: 0 0.25em 0.5em 0 rgba(0,0,0,0.25);
@@ -1562,7 +1562,7 @@
 		}
 
 		&:after {
-			@include vendor('background-image', ('linear-gradient(top, #{_palette(bg-transparent)}, #{_palette(bg-transparent)})', 'url("images/overlay.png");'));
+			@include vendor('background-image', ('linear-gradient(top, #{_palette(bg-transparent)}, #{_palette(bg-transparent)})', 'url("../images/overlay.png");'));
 			content: '';
 			display: block;
 			height: 100%;
