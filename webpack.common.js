@@ -2,14 +2,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+const { url } = require('inspector');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/',
+        clean: true,
     },
     module: {
         rules: [
@@ -27,8 +30,20 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader',
+                    'css-loader',                    
+                    {
+                        loader: 'resolve-url-loader',
+                        options: {       
+                            sourceMap: true,
+                            filter: (url) => !(url.startsWith("data:image/svg+xml"))
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
                 ],
             },
             {
@@ -42,25 +57,17 @@ module.exports = {
             },
             {
                 test: /\.(png|jpeg|gif|svg)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name].[ext]',
-                            context: 'src/assets/images',
-                            outputPath: 'images',
-                            publicPath: 'images',
-                            useRelativePaths: true,
-                        },
-                    },
-                ],
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name].[hash][ext]',
+                },
             },
         ],
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
+            filename: '[name].[contenthash].css',            
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -71,9 +78,17 @@ module.exports = {
             template: './src/elements.html',
             filename: './elements.html',
         }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         {
+        //             from: path.resolve(__dirname, 'src/assets/vectors'), // Source folder
+        //             to: 'vectors', // Destination folder in dist
+        //         },
+        //     ],
+        // }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
 }),
-    ],
+    ],        
 };
