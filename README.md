@@ -62,7 +62,7 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
    ```bash  
    cd solution-folder  
    ```  
-3. Install Node dependencies (yes, you need Node):  
+3. Install Node dependencies (yes, you need Node (version 18 works, use nvm for good sake)):  
    ```bash  
    npm install  
    ```  
@@ -81,6 +81,73 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
    ```bash  
    npx http-server dist  
    ```  
+
+## **Designer Guide**  
+Everything you need to tweak and manage this page lives inside the `<section>` divs.  
+Not using a section? **Delete it.** Want to move things around? **Go for it.** (But first, check the Marketing Guide to make sure you’re not ditching a key piece of the puzzle.)
+
+There are two main building blocks here: **Spotlight** and **Wrapper**. Think of these as cards—move them, stack them, or leave them as-is (recommended for speed).  
+
+### **Spotlight**  
+```html
+<section id="casestudies" class="spotlight style3 bottom">
+```
+- **Use Case:** Great for sections that need a background image or specific positioning for the content.  
+- **Customization:** Decide if the content appears at the bottom, right, or left using `style#`.  
+- **Navigation:** Comes with handy navigation arrows for scrolling between sections.  
+- **Pro Tip:** Double-check your section IDs (e.g., `#casestudies`) and make sure navigation links point to the correct hashtags. Nothing kills the vibe like broken navigation.
+
+### **Wrapper**  
+```html
+<section id="four" class="wrapper style1 special fade-up">
+```
+- **Use Case:** Ideal for sections without navigation arrows or those with longer content that doesn’t fit the predefined container.  
+
+## Marketing Guide. 
+The whole point of this Landing Page is simple: remove the decision fatigue. We’ve done the homework for you, so you don’t have to spend hours debating layouts, fonts, or which shade of orange converts best.
+
+This template is built on proven best practices—everything you need for a high-performing landing page, and nothing you don’t. Every section is crafted to guide your visitors from curious to convinced, with minimal effort on your part.
+
+Here’s what’s included and why each one matters:
+
+### **1. Header**
+The navigation hub.  
+Every landing page needs a clean header with easy-to-scan links. Keep it simple: logo on the left, key links in the middle, and a bold call-to-action (*Sign Up*, anyone?) on the right. Don’t overwhelm—this is not your LinkedIn profile.
+
+### **2. Banner (Hero Section)**  
+This is your "wow" moment.  
+Grab attention with a bold headline, a quick punchy subhead, and a killer visual that screams: *“This is what you’re here for.”* Top it off with a simple button or scroll prompt (you know, the thing you actually want people to click).
+
+### **3. Social Proof**
+Because trust sells.  
+People trust other people—not just you. Add testimonials, stats, or logos that scream credibility. *“This helped us grow 300%!”* is a lot better than *“Trust us.”*
+
+### **4. Benefits**  
+Why should they care?  
+Break it down for them. What’s in it for them? Use bold headers and punchy text for each benefit. No essays here—nobody has time for that. Pro tip: Pair benefits with icons for extra *oomph*.
+
+### **5. How It Works**  
+Show them the magic.  
+People don’t want to guess. Walk them through your process in 3 simple steps (not 12). Visuals, icons, or diagrams help make it a no-brainer. Make it feel easy, even if it’s not.
+
+### **6. Case Studies / Testimonials**
+Results over promises.  
+Don’t just tell them it works—show them. Add real-world examples, case studies, or user stories that prove your template delivers. Numbers and specifics win here.  
+
+### **7. FAQ**  
+Answer their doubts before they even ask.  
+What’s holding them back? Is it cost, time, or effort? Answer these head-on in a simple Q&A format. Think of the most common questions your mom, friend, or coworker might ask—and solve them here.
+
+### **8. Additional Call-to-Action (CTA)**  
+Close the deal.  
+Hit them with a clear, direct CTA. *“Get Started Now”* or *“Launch Your Landing Page Today”* beats *“Learn More”* any day. Make this button stand out—it’s doing the heavy lifting.
+
+### **9. Footer**  
+The unsung hero of navigation.  
+It’s where the details live: social links, policies, contact info, and maybe a bonus CTA. Keep it functional, not fancy. Nobody’s here to admire your footer design.
+
+## Advance Use
+You can create a more complex website like structure with multiple pages. just add the html page, include it on the webpack configuration file and add it to the menu, and boom, now you have a multiple pages website. 
 
 ## How to Deploy  
 

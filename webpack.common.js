@@ -78,6 +78,18 @@ module.exports = {
             template: './src/elements.html',
             filename: './elements.html',
         }),
+        new HtmlWebpackPlugin({
+            template: './src/left-sidebar.html',
+            filename: './left-sidebar.html',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/right-sidebar.html',
+            filename: './right-sidebar.html',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/no-sidebar.html',
+            filename: './no-sidebar.html',
+        }),
         // new CopyWebpackPlugin({
         //     patterns: [
         //         {
