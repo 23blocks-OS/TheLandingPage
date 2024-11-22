@@ -146,8 +146,19 @@ Hit them with a clear, direct CTA. *“Get Started Now”* or *“Launch Your La
 The unsung hero of navigation.  
 It’s where the details live: social links, policies, contact info, and maybe a bonus CTA. Keep it functional, not fancy. Nobody’s here to admire your footer design.
 
-## Advance Use
-You can create a more complex website like structure with multiple pages. just add the html page, include it on the webpack configuration file and add it to the menu, and boom, now you have a multiple pages website. 
+Here’s a refined version of your **Advanced Use** section:
+
+## **Advanced Use**  
+Want to take things to the next level? You can easily transform this landing page into a multi-page website.  
+
+Here’s how:  
+1. **Add a New Page**: Create a new HTML file for your additional page.  
+2. **Update Webpack**: Include your new file in the Webpack configuration. This ensures it gets built and optimized with the rest of your site.  
+3. **Link It**: Add the new page to your menu or navigation links.  
+
+And just like that—**boom**—you’ve got a multi-page website! Whether it’s for FAQs, a blog, or a pricing page, the setup is quick and seamless.  
+
+This version keeps the tone light and engaging while making the instructions clear and actionable. Let me know if you need further refinement!
 
 ## How to Deploy  
 
