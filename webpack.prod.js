@@ -7,6 +7,9 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = merge(common, {
     mode: 'production',
     optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
         minimize: true,
         minimizer: [
             new TerserPlugin({

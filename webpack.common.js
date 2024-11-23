@@ -2,7 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const purgecss = require('@fullhuman/postcss-purgecss').default;
 const webpack = require('webpack');
+const loader = require('sass-loader');
 
 module.exports = {
     entry: './src/index.js',
@@ -11,13 +14,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         clean: true,
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-        },
-        minimize: true,
-    },
+    },    
     module: {
         rules: [
             {
@@ -33,21 +30,43 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',                    
+                    MiniCssExtractPlugin.loader,       
+                    {
+                        loader: 'css-loader',
+                        options: { sourceMap: true },
+                    },                                        
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    autoprefixer,
+                                    purgecss({
+                                        content: [
+                                            './src/**/*.html',
+                                            './src/**/*.js',
+                                            './src/**/*.jsx',
+                                            './src/**/*.ts',
+                                            './src/**/*.tsx',
+                                            './src/**/*.vue',
+                                        ],
+                                        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+                                    })
+                                ],
+                            },
+                        },
+                    },                  
                     {
                         loader: 'resolve-url-loader',
-                        options: {       
-                            sourceMap: true,
-                        },
-                    },
+                        options: { sourceMap: true},
+                    },     
                     {
                         loader: 'sass-loader',
                         options: {
                             implementation: require('sass'),
                             sourceMap: true,
                         },
-                    },
+                    },                                                                      
                 ],
             },
             {
