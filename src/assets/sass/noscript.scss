@@ -1,4 +1,11 @@
-@import 'libs/vars';
+// light theme
+$theme: 'light'; // Change this to 'light' to switch to the light theme
+@import 'libs/vars.light';
+
+// Dark theme
+// $theme: 'dark'; // Change this to 'dark' to switch to the dark theme
+// @import 'libs/vars.dark';
+
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/vendor';
