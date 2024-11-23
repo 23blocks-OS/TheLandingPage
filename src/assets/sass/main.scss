@@ -5,6 +5,7 @@
 @use 'libs/vendor' as vendor;
 @use 'libs/breakpoints' as bp;
 @use 'libs/html-grid' as htmlgrid;
+@use 'sass:color';
 @import url('fontawesome-all.min.css');
 @import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:100,300,100italic,300italic");
 
@@ -1066,7 +1067,7 @@
 		}
 
 		&:active {
-			background-color: transparentize(fn.palette(accent1), 0.85);
+			background-color: color.scale(fn.palette(accent1), $alpha: -85%);
 		}
 
 		&.icon {
@@ -1093,11 +1094,11 @@
 			color: fn.palette(fg-bold) !important;
 
 			&:hover {
-				background-color: lighten(fn.palette(accent1), 5);
+				background-color: color.adjust(fn.palette(accent1), $lightness: 5%);
 			}
 
 			&:active {
-				background-color: darken(fn.palette(accent1), 5);
+				background-color: color.adjust(fn.palette(accent1), $lightness: -5%);
 			}
 		}
 
@@ -2039,12 +2040,12 @@
 				top: 0;
 				width: fn.size(navPanel);
 				z-index: fn.misc(z-index-base) + 2;
-				background: darken(fn.palette(bg), 2);
+				background: color.adjust(fn.palette(bg), $lightness: -2%);
 				padding: 0.75em 1.25em;
 
 				.link {
 					border: 0;
-					border-top: solid 1px transparentize(fn.palette(border), 0.25);
+					border-top: solid 1px color.scale(fn.palette(border), $alpha: -25%);
 					color: fn.palette(fg);
 					display: block;
 					height: 3em;

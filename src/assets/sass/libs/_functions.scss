@@ -1,3 +1,6 @@
+// Imports. 
+@use 'sass:list';
+@use 'sass:map';
 @use './vars' as vars; 
 
 /// Removes a specific item from a list.
@@ -44,12 +47,12 @@
 /// @return {string} Value.
 @function val($map, $keys...) {
 
-	@if nth($keys, 1) == null {
+	@if list.nth($keys, 1) == null {
 		$keys: remove-nth($keys, 1);
 	}
 
 	@each $key in $keys {
-		$map: map-get($map, $key);
+		$map: map.get($map, $key);
 	}
 
 	@return $map;
