@@ -62,7 +62,7 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
    ```bash  
    cd solution-folder  
    ```  
-3. Install Node dependencies (yes, you need Node (version 18 works, use nvm for good sake)):  
+3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake)):  
    ```bash  
    npm install  
    ```  

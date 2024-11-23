@@ -1,17 +1,10 @@
 
-// Light theme
-$theme: 'light'; // Change this to 'light' to switch to the light theme
-@import 'libs/vars.light';
-
-// Dark theme
-// $theme: 'dark'; // Change this to 'dark' to switch to the dark theme
-// @import 'libs/vars.dark';
-
-@import 'libs/functions';
-@import 'libs/mixins';
-@import 'libs/vendor';
-@import 'libs/breakpoints';
-@import 'libs/html-grid';
+@use 'libs/vars';
+@use 'libs/functions' as fn;
+@use 'libs/mixins' as mixins;
+@use 'libs/vendor' as vendor;
+@use 'libs/breakpoints' as bp;
+@use 'libs/html-grid' as htmlgrid;
 @import url('fontawesome-all.min.css');
 @import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:100,300,100italic,300italic");
 
@@ -25,7 +18,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 // Breakpoints.
 
-	@include breakpoints((
+	@include bp.breakpoints((
 		xlarge:   ( 1281px,  1680px ),
 		large:    ( 981px,   1280px ),
 		medium:   ( 737px,   980px  ),
@@ -35,8 +28,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 // Mixins.
 
-	@mixin line-icon($bg: _palette(bg), $fg: _palette(fg-bold)) {
-		@include icon;
+	@mixin line-icon($bg: fn.palette(bg), $fg: fn.palette(fg-bold)) {
+		@include mixins.icon;
 		$size: 1px;
 
 		&:before {
@@ -135,7 +128,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 	html, body {
-		background: _palette(bg);
+		background: fn.palette(bg);
 	}
 
 	body {
@@ -143,36 +136,36 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		// Stops initial animations until page loads.
 			&.is-preload {
 				*, *:before, *:after {
-					@include vendor('animation', 'none !important');
-					@include vendor('transition', 'none !important');
+					@include vendor.vendor('animation', 'none !important');
+					@include vendor.vendor('transition', 'none !important');
 				}
 			}
 
 	}
 
 	body, input, select, textarea {
-		color: _palette(fg);
-		font-family: _font(family);
+		color: fn.palette(fg);
+		font-family: fn.font(family);
 		font-size: 15pt;
-		font-weight: _font(weight);
+		font-weight: fn.font(weight);
 		line-height: 1.75em;
 	}
 
 	a {
-		@include vendor('transition', ('border-color #{_duration(transition)} ease-in-out', 'color #{_duration(transition)} ease-in-out'));
+		@include vendor.vendor('transition', ('border-color #{fn.duration(transition)} ease-in-out', 'color #{fn.duration(transition)} ease-in-out'));
 		border-bottom: dotted 1px;
-		color: _palette(accent1);
+		color: fn.palette(accent1);
 		text-decoration: none;
 
 		&:hover {
-			color: _palette(accent1) !important;
+			color: fn.palette(accent1) !important;
 			border-bottom-color: transparent;
 		}
 	}
 
 	strong, b {
-		color: _palette(fg-bold);
-		font-weight: _font(weight-bold);
+		color: fn.palette(fg-bold);
+		font-weight: fn.font(weight-bold);
 	}
 
 	em, i {
@@ -180,14 +173,14 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	p {
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: _palette(fg-bold);
-		font-weight: _font(weight-bold);
+		color: fn.palette(fg-bold);
+		font-weight: fn.font(weight-bold);
 		line-height: 1em;
-		margin: 0 0 (_size(element-margin) * 0.5) 0;
+		margin: 0 0 (fn.size(element-margin) * 0.5) 0;
 
 		a {
 			color: inherit;
@@ -235,25 +228,25 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	hr {
 		border: 0;
-		border-bottom: solid 1px _palette(border);
-		margin: (_size(element-margin) * 1.5) 0;
+		border-bottom: solid 1px fn.palette(border);
+		margin: (fn.size(element-margin) * 1.5) 0;
 
 		&.major {
-			margin: (_size(element-margin) * 2) 0;
+			margin: (fn.size(element-margin) * 2) 0;
 		}
 	}
 
 	blockquote {
-		border-left: solid 4px _palette(border);
+		border-left: solid 4px fn.palette(border);
 		font-style: italic;
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 		padding: 0.5em 0 0.5em 2em;
 	}
 
 	code {
-		background: _palette(border-bg);
-		border-radius: _size(border-radius);
-		font-family: _font(family-fixed);
+		background: fn.palette(border-bg);
+		border-radius: fn.size(border-radius);
+		font-family: fn.font(family-fixed);
 		font-size: 0.9em;
 		margin: 0 0.25em;
 		padding: 0.25em 0.65em;
@@ -261,9 +254,9 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	pre {
 		-webkit-overflow-scrolling: touch;
-		font-family: _font(family-fixed);
+		font-family: fn.font(family-fixed);
 		font-size: 0.9em;
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 
 		code {
 			display: block;
@@ -289,41 +282,41 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	// Spinner
 
-		@include keyframes('spinner-show') {
+		@include vendor.keyframes('spinner-show') {
 			0% { opacity: 0; }
 			100% { opacity: 1; }
 		}
 
-		@include keyframes('spinner-hide') {
-			0% { color: _palette(fg-lighter); z-index: _misc(z-index-overlay) + 1; @include vendor('transform', 'scale(1) rotate(0deg)'); }
-			99% { color: _palette(bg); z-index: _misc(z-index-overlay) + 1; @include vendor('transform', 'scale(0.5) rotate(360deg)'); }
-			100% { color: _palette(bg); z-index: -1; @include vendor('transform', 'scale(0.5) rotate(360deg)'); }
+		@include vendor.keyframes('spinner-hide') {
+			0% { color: fn.palette(fg-lighter); z-index: fn.misc(z-index-overlay) + 1; @include vendor.vendor('transform', 'scale(1) rotate(0deg)'); }
+			99% { color: fn.palette(bg); z-index: fn.misc(z-index-overlay) + 1; @include vendor.vendor('transform', 'scale(0.5) rotate(360deg)'); }
+			100% { color: fn.palette(bg); z-index: -1; @include vendor.vendor('transform', 'scale(0.5) rotate(360deg)'); }
 		}
 
-		@include keyframes('spinner-rotate') {
-			0% { @include vendor('transform', 'scale(1) rotate(0deg)'); }
-			100% { @include vendor('transform', 'scale(1) rotate(360deg)'); }
+		@include vendor.keyframes('spinner-rotate') {
+			0% { @include vendor.vendor('transform', 'scale(1) rotate(0deg)'); }
+			100% { @include vendor.vendor('transform', 'scale(1) rotate(360deg)'); }
 		}
 
 	// Overlay
 
-		@include keyframes('overlay-hide') {
-			0% { opacity: 1; z-index: _misc(z-index-overlay); }
-			15% { opacity: 1; z-index: _misc(z-index-overlay); }
-			99% { opacity: 0; z-index: _misc(z-index-overlay); }
+		@include vendor.keyframes('overlay-hide') {
+			0% { opacity: 1; z-index: fn.misc(z-index-overlay); }
+			15% { opacity: 1; z-index: fn.misc(z-index-overlay); }
+			99% { opacity: 0; z-index: fn.misc(z-index-overlay); }
 			100% { opacity: 0; z-index: -1; }
 		}
 
 	body.landing {
-		@include icon(false, solid);
+		@include mixins.icon(false, solid);
 
 		// Spinner (inactive)
 
 			&:before {
-				@include vendor('animation', ('spinner-show 1.5s 1 0.25s ease forwards', 'spinner-hide 0.25s ease-in-out forwards !important'));
-				@include vendor('transform-origin', '50% 50%');
+				@include vendor.vendor('animation', ('spinner-show 1.5s 1 0.25s ease forwards', 'spinner-hide 0.25s ease-in-out forwards !important'));
+				@include vendor.vendor('transform-origin', '50% 50%');
 
-				color: _palette(fg-lighter);
+				color: fn.palette(fg-lighter);
 				content: '\f1ce';
 				cursor: default;
 				display: block;
@@ -343,8 +336,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		// Overlay (inactive)
 
 			&:after {
-				@include vendor('animation', 'overlay-hide #{_duration(landing-fadein)} ease-in forwards !important');
-				background: _palette(bg);
+				@include vendor.vendor('animation', 'overlay-hide #{fn.duration(landing-fadein)} ease-in forwards !important');
+				background: fn.palette(bg);
 				content: '';
 				display: block;
 				height: 100%;
@@ -361,16 +354,16 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			// Spinner (active)
 
 				&:before {
-					@include vendor('animation', ('spinner-show 1.5s 1 0.25s ease forwards', 'spinner-rotate 0.75s infinite linear !important'));
-					z-index: _misc(z-index-overlay) + 1;
+					@include vendor.vendor('animation', ('spinner-show 1.5s 1 0.25s ease forwards', 'spinner-rotate 0.75s infinite linear !important'));
+					z-index: fn.misc(z-index-overlay) + 1;
 				}
 
 			// Overlay (active)
 
 				&:after {
-					@include vendor('animation', 'none !important');
+					@include vendor.vendor('animation', 'none !important');
 					opacity: 1;
-					z-index: _misc(z-index-overlay);
+					z-index: fn.misc(z-index-overlay);
 				}
 
 		}
@@ -386,39 +379,39 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	.container {
 		margin: 0 auto;
-		max-width: calc(100% - #{_size(element-margin) * 2});
-		width: _size(container-width);
+		max-width: calc(100% - #{fn.size(element-margin) * 2});
+		width: fn.size(container-width);
 
 		&.xsmall {
-			width: (_size(container-width) * 0.25);
+			width: (fn.size(container-width) * 0.25);
 		}
 
 		&.small {
-			width: (_size(container-width) * 0.5);
+			width: (fn.size(container-width) * 0.5);
 		}
 
 		&.medium {
-			width: (_size(container-width) * 0.75);
+			width: (fn.size(container-width) * 0.75);
 		}
 
 		&.large {
-			width: (_size(container-width) * 1.25);
+			width: (fn.size(container-width) * 1.25);
 		}
 
 		&.xlarge {
-			width: (_size(container-width) * 1.5);
+			width: (fn.size(container-width) * 1.5);
 		}
 
 		&.max {
 			width: 100%;
 		}
 
-		@include breakpoint('<=large') {
+		@include bp.breakpoint('<=large') {
 			width: 90%;
 			max-width: 100%;
 		}
 
-		@include breakpoint('<=medium') {
+		@include bp.breakpoint('<=medium') {
 			width: 100% !important;
 		}
 	}
@@ -426,26 +419,26 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Row */
 
 	.row {
-		@include html-grid(2.5em);
+		@include htmlgrid.html-grid(2.5em);
 
-		@include breakpoint('<=xlarge') {
-			@include html-grid(2.5em, 'xlarge');
+		@include bp.breakpoint('<=xlarge') {
+			@include htmlgrid.html-grid(2.5em, 'xlarge');
 		}
 
-		@include breakpoint('<=large') {
-			@include html-grid(2.5em, 'large');
+		@include bp.breakpoint('<=large') {
+			@include htmlgrid.html-grid(2.5em, 'large');
 		}
 
-		@include breakpoint('<=medium') {
-			@include html-grid(2.5em, 'medium');
+		@include bp.breakpoint('<=medium') {
+			@include htmlgrid.html-grid(2.5em, 'medium');
 		}
 
-		@include breakpoint('<=small') {
-			@include html-grid(2.5em, 'small');
+		@include bp.breakpoint('<=small') {
+			@include htmlgrid.html-grid(2.5em, 'small');
 		}
 
-		@include breakpoint('<=xsmall') {
-			@include html-grid(2.5em, 'xsmall');
+		@include bp.breakpoint('<=xsmall') {
+			@include htmlgrid.html-grid(2.5em, 'xsmall');
 		}
 	}
 
@@ -459,20 +452,20 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	header {
 		p {
-			color: _palette(fg-bold);
+			color: fn.palette(fg-bold);
 			position: relative;
-			margin: 0 0 (_size(element-margin) * 0.75) 0;
+			margin: 0 0 (fn.size(element-margin) * 0.75) 0;
 		}
 
 		h2 + p {
 			font-size: 1.25em;
-			margin-top: (_size(element-margin) * -0.5);
+			margin-top: (fn.size(element-margin) * -0.5);
 			line-height: 1.75em;
 		}
 
 		h3 + p {
 			font-size: 1.1em;
-			margin-top: (_size(element-margin) * -0.4);
+			margin-top: (fn.size(element-margin) * -0.4);
 			line-height: 1.75em;
 		}
 
@@ -480,17 +473,17 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		h5 + p,
 		h6 + p {
 			font-size: 0.9em;
-			margin-top: (_size(element-margin) * -0.3);
+			margin-top: (fn.size(element-margin) * -0.3);
 			line-height: 1.5em;
 		}
 
 		&.major {
-			margin: 0 0 (_size(element-margin) * 2) 0;
+			margin: 0 0 (fn.size(element-margin) * 2) 0;
 			position: relative;
 			text-align: center;
 
 			&:after {
-				background: _palette(accent1);
+				background: fn.palette(accent1);
 				content: '';
 				display: inline-block;
 				height: 0.2em;
@@ -502,14 +495,14 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	footer {
 		&.major {
-			margin: (_size(element-margin) * 2) 0 0 0;
+			margin: (fn.size(element-margin) * 2) 0 0 0;
 		}
 	}
 
 /* Form */
 
 	form {
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 
 		&.cta {
 			max-width: 35em;
@@ -519,11 +512,11 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	label {
-		color: _palette(fg-bold);
+		color: fn.palette(fg-bold);
 		display: block;
 		font-size: 0.9em;
-		font-weight: _font(weight-bold);
-		margin: 0 0 (_size(element-margin) * 0.5) 0;
+		font-weight: fn.font(weight-bold);
+		margin: 0 0 (fn.size(element-margin) * 0.5) 0;
 	}
 
 	input[type="text"],
@@ -531,11 +524,11 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	input[type="email"],
 	select,
 	textarea {
-		@include vendor('appearance', 'none');
-		@include vendor('transition', 'border-color #{_duration(transition)} ease-in-out');
+		@include vendor.vendor('appearance', 'none');
+		@include vendor.vendor('transition', 'border-color #{fn.duration(transition)} ease-in-out');
 		background: transparent;
-		border-radius: _size(border-radius);
-		border: solid 1px _palette(border);
+		border-radius: fn.size(border-radius);
+		border: solid 1px fn.palette(border);
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -548,22 +541,22 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&:focus {
-			border-color: _palette(accent1);
+			border-color: fn.palette(accent1);
 		}
 	}
 
 	select {
-		background-image: svg-url("<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'><path d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='#{_palette(border)}' /></svg>");
+		background-image: mixins.svg-url("<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'><path d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='#{fn.palette(border)}' /></svg>");
 		background-size: 1.25rem;
 		background-repeat: no-repeat;
 		background-position: calc(100% - 1rem) center;
-		height: _size(element-height);
-		padding-right: _size(element-height);
+		height: fn.size(element-height);
+		padding-right: fn.size(element-height);
 		text-overflow: ellipsis;
 
 		option {
-			color: _palette(fg-bold);
-			background: _palette(bg);
+			color: fn.palette(fg-bold);
+			background: fn.palette(bg);
 		}
 
 		&:focus {
@@ -581,7 +574,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: _size(element-height);
+		height: fn.size(element-height);
 	}
 
 	textarea {
@@ -590,7 +583,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	input[type="checkbox"],
 	input[type="radio"] {
-		@include vendor('appearance', 'none');
+		@include vendor.vendor('appearance', 'none');
 		display: block;
 		float: left;
 		margin-right: -2em;
@@ -599,43 +592,43 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		z-index: -1;
 
 		& + label {
-			@include icon(false, solid);
-			color: _palette(fg);
+			@include mixins.icon(false, solid);
+			color: fn.palette(fg);
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
-			font-weight: _font(weight);
-			padding-left: (_size(element-height) * 0.6) + 0.75em;
+			font-weight: fn.font(weight);
+			padding-left: (fn.size(element-height) * 0.6) + 0.75em;
 			padding-right: 0.75em;
 			position: relative;
 
 			&:before {
-				border-radius: _size(border-radius);
-				border: solid 1px _palette(border);
+				border-radius: fn.size(border-radius);
+				border: solid 1px fn.palette(border);
 				content: '';
 				display: inline-block;
 				font-size: 0.8em;
-				height: (_size(element-height) * 0.75);
+				height: (fn.size(element-height) * 0.75);
 				left: 0;
-				line-height: (_size(element-height) * 0.75);
+				line-height: (fn.size(element-height) * 0.75);
 				position: absolute;
 				text-align: center;
 				top: 0;
-				width: (_size(element-height) * 0.75);
+				width: (fn.size(element-height) * 0.75);
 			}
 		}
 
 		&:checked + label {
 			&:before {
-				background: _palette(border2-bg);
-				color: _palette(fg-bold);
+				background: fn.palette(border2-bg);
+				color: fn.palette(fg-bold);
 				content: '\f00c';
 			}
 		}
 
 		&:focus + label {
 			&:before {
-				border-color: _palette(accent1);
+				border-color: fn.palette(accent1);
 			}
 		}
 	}
@@ -643,7 +636,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	input[type="checkbox"] {
 		& + label {
 			&:before {
-				border-radius: _size(border-radius);
+				border-radius: fn.size(border-radius);
 			}
 		}
 	}
@@ -657,31 +650,31 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	::-webkit-input-placeholder {
-		color: _palette(fg-light) !important;
+		color: fn.palette(fg-light) !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: _palette(fg-light) !important;
+		color: fn.palette(fg-light) !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: _palette(fg-light) !important;
+		color: fn.palette(fg-light) !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: _palette(fg-light) !important;
+		color: fn.palette(fg-light) !important;
 		opacity: 1.0;
 	}
 
 /* Box */
 
 	.box {
-		border-radius: _size(border-radius);
-		border: solid 1px _palette(border);
-		margin-bottom: _size(element-margin);
+		border-radius: fn.size(border-radius);
+		border: solid 1px fn.palette(border);
+		margin-bottom: fn.size(element-margin);
 		padding: 1.5em;
 
 		> :last-child,
@@ -700,7 +693,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Icon */
 
 	.icon {
-		@include icon;
+		@include mixins.icon;
 		border-bottom: none;
 		position: relative;
 
@@ -720,7 +713,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.brands {
 			&:before {
-				font-family: 'Font Awesome 5 Brands' !important;
+				font-family: 'Font Awesome 6 Brands' !important;
 			}
 		}
 
@@ -729,13 +722,13 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&.major {
-			background: _palette(accent2);
+			background: fn.palette(accent2);
 			border-radius: 100%;
 			cursor: default;
 			display: inline-block;
 			height: 6em;
 			line-height: 5.65em;
-			margin: 0 0 _size(element-margin) 0;
+			margin: 0 0 fn.size(element-margin) 0;
 			text-align: center;
 			width: 6em;
 
@@ -744,7 +737,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			}
 
 			&.alt {
-				@include line-icon(_palette(accent2));
+				@include line-icon(fn.palette(accent2));
 			}
 		}
 	}
@@ -752,7 +745,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Image */
 
 	.image {
-		border-radius: _size(border-radius);
+		border-radius: fn.size(border-radius);
 		border: 0;
 		display: inline-block;
 		position: relative;
@@ -771,7 +764,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		img {
-			border-radius: _size(border-radius);
+			border-radius: fn.size(border-radius);
 			display: block;
 		}
 
@@ -798,7 +791,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.fit {
 			display: block;
-			margin: 0 0 _size(element-margin) 0;
+			margin: 0 0 fn.size(element-margin) 0;
 			width: 100%;
 
 			img {
@@ -811,7 +804,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	ol {
 		list-style: decimal;
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 		padding-left: 1.25em;
 
 		li {
@@ -821,7 +814,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	ul {
 		list-style: disc;
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 		padding-left: 1em;
 
 		li {
@@ -833,7 +826,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			padding-left: 0;
 
 			li {
-				border-top: solid 1px _palette(border);
+				border-top: solid 1px fn.palette(border);
 				padding: 0.5em 0;
 
 				&:first-child {
@@ -846,7 +839,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	dl {
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 	}
 
 /* Icons */
@@ -875,19 +868,19 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Actions */
 
 	ul.actions {
-		@include vendor('display', 'flex');
+		@include vendor.vendor('display', 'flex');
 		cursor: default;
 		list-style: none;
-		margin-left: (_size(element-margin) * -0.5);
+		margin-left: (fn.size(element-margin) * -0.5);
 		padding-left: 0;
 
 		li {
-			padding: 0 0 0 (_size(element-margin) * 0.5);
+			padding: 0 0 0 (fn.size(element-margin) * 0.5);
 			vertical-align: middle;
 		}
 
 		&.special {
-			@include vendor('justify-content', 'center');
+			@include vendor.vendor('justify-content', 'center');
 			width: 100%;
 			margin-left: 0;
 
@@ -899,11 +892,11 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&.stacked {
-			@include vendor('flex-direction', 'column');
+			@include vendor.vendor('flex-direction', 'column');
 			margin-left: 0;
 
 			li {
-				padding: (_size(element-margin) * 0.65) 0 0 0;
+				padding: (fn.size(element-margin) * 0.65) 0 0 0;
 
 				&:first-child {
 					padding-top: 0;
@@ -912,11 +905,11 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&.fit {
-			width: calc(100% + #{_size(element-margin) * 0.5});
+			width: calc(100% + #{fn.size(element-margin) * 0.5});
 
 			li {
-				@include vendor('flex-grow', '1');
-				@include vendor('flex-shrink', '1');
+				@include vendor.vendor('flex-grow', '1');
+				@include vendor.vendor('flex-shrink', '1');
 				width: 100%;
 
 				> * {
@@ -929,16 +922,16 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			}
 		}
 
-		@include breakpoint('<=xsmall') {
+		@include bp.breakpoint('<=xsmall') {
 			&:not(.fixed) {
-				@include vendor('flex-direction', 'column');
+				@include vendor.vendor('flex-direction', 'column');
 				margin-left: 0;
 				width: 100% !important;
 
 				li {
-					@include vendor('flex-grow', '1');
-					@include vendor('flex-shrink', '1');
-					padding: (_size(element-margin) * 0.5) 0 0 0;
+					@include vendor.vendor('flex-grow', '1');
+					@include vendor.vendor('flex-shrink', '1');
+					padding: (fn.size(element-margin) * 0.5) 0 0 0;
 					text-align: center;
 					width: 100%;
 
@@ -976,17 +969,17 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	table {
-		margin: 0 0 _size(element-margin) 0;
+		margin: 0 0 fn.size(element-margin) 0;
 		width: 100%;
 
 		tbody {
 			tr {
-				border: solid 1px _palette(border);
+				border: solid 1px fn.palette(border);
 				border-left: 0;
 				border-right: 0;
 
 				&:nth-child(2n + 1) {
-					background-color: _palette(border-bg);
+					background-color: fn.palette(border-bg);
 				}
 			}
 		}
@@ -996,19 +989,19 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		th {
-			color: _palette(fg-bold);
+			color: fn.palette(fg-bold);
 			font-size: 0.9em;
-			font-weight: _font(weight-bold);
+			font-weight: fn.font(weight-bold);
 			padding: 0 0.75em 0.75em 0.75em;
 			text-align: left;
 		}
 
 		thead {
-			border-bottom: solid 1px _palette(border);
+			border-bottom: solid 1px fn.palette(border);
 		}
 
 		tfoot {
-			border-top: solid 1px _palette(border);
+			border-top: solid 1px fn.palette(border);
 		}
 
 		&.alt {
@@ -1017,7 +1010,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			tbody {
 				tr {
 					td {
-						border: solid 1px _palette(border);
+						border: solid 1px fn.palette(border);
 						border-left-width: 0;
 						border-top-width: 0;
 
@@ -1050,30 +1043,30 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	input[type="reset"],
 	input[type="button"],
 	.button {
-		@include vendor('appearance', 'none');
-		@include vendor('transition', ('background-color #{_duration(transition)} ease-in-out', 'color #{_duration(transition)} ease-in-out', 'box-shadow #{_duration(transition)} ease-in-out'));
+		@include vendor.vendor('appearance', 'none');
+		@include vendor.vendor('transition', ('background-color #{fn.duration(transition)} ease-in-out', 'color #{fn.duration(transition)} ease-in-out', 'box-shadow #{fn.duration(transition)} ease-in-out'));
 		background-color: transparent;
-		border-radius: _size(border-radius);
+		border-radius: fn.size(border-radius);
 		border: 0;
-		box-shadow: inset 0 0 0 1px _palette(border);
-		color: _palette(fg-bold) !important;
+		box-shadow: inset 0 0 0 1px fn.palette(border);
+		color: fn.palette(fg-bold) !important;
 		cursor: pointer;
 		display: inline-block;
-		font-weight: _font(weight-bold);
-		height: _size(element-height);
-		line-height: _size(element-height);
+		font-weight: fn.font(weight-bold);
+		height: fn.size(element-height);
+		line-height: fn.size(element-height);
 		padding: 0 2.25em;
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
 
 		&:hover, &:active {
-			box-shadow: inset 0 0 0 1px _palette(accent1);
-			color: _palette(accent1) !important;
+			box-shadow: inset 0 0 0 1px fn.palette(accent1);
+			color: fn.palette(accent1) !important;
 		}
 
 		&:active {
-			background-color: transparentize(_palette(accent1), 0.85);
+			background-color: transparentize(fn.palette(accent1), 0.85);
 		}
 
 		&.icon {
@@ -1095,24 +1088,24 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&.primary {
-			background-color: _palette(accent1);
+			background-color: fn.palette(accent1);
 			box-shadow: none;
-			color: _palette(fg-bold) !important;
+			color: fn.palette(fg-bold) !important;
 
 			&:hover {
-				background-color: lighten(_palette(accent1), 5);
+				background-color: lighten(fn.palette(accent1), 5);
 			}
 
 			&:active {
-				background-color: darken(_palette(accent1), 5);
+				background-color: darken(fn.palette(accent1), 5);
 			}
 		}
 
 		&.disabled,
 		&:disabled {
-			background-color: _palette(border) !important;
+			background-color: fn.palette(border) !important;
 			box-shadow: none !important;
-			color: _palette(fg-bold) !important;
+			color: fn.palette(fg-bold) !important;
 			cursor: default;
 			opacity: 0.25;
 		}
@@ -1164,7 +1157,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		// Force spotlights to stack in reverse order (needed for our box
 		// shadows to overlap stuff in the right direction).
-		@for $i from 1 through _misc(max-spotlight) {
+		@for $i from 1 through fn.misc(max-spotlight) {
 			&:nth-last-of-type(#{$i}) {
 				z-index: #{$i};
 			}
@@ -1189,25 +1182,25 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		.content {
-			@include vendor('transform', 'translate(0,0)');
-			@include vendor('transition', 'transform 1s ease, opacity 1s ease');
-			background: _palette(bg-transparent);
+			@include vendor.vendor('transform', 'translate(0,0)');
+			@include vendor.vendor('transition', 'transform 1s ease, opacity 1s ease');
+			background: fn.palette(bg-transparent);
 			border-style: solid;
 			opacity: 1;
 			position: absolute;
 		}
 
 		.goto-next {
-			@include vendor('transform', 'translate(0,0)');
-			@include vendor('transition', 'transform 0.75s ease, opacity 1s ease-in');
-			@include vendor('transition-delay', '0.5s');
+			@include vendor.vendor('transform', 'translate(0,0)');
+			@include vendor.vendor('transition', 'transform 0.75s ease, opacity 1s ease-in');
+			@include vendor.vendor('transition-delay', '0.5s');
 			opacity: 1;
 		}
 
 		&.top, &.bottom {
 			.content {
 				left: 0;
-				padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 0.85) - _size(element-margin)) 0;
+				padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 0.85) - fn.size(element-margin)) 0;
 				width: 100%;
 			}
 		}
@@ -1251,19 +1244,19 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.style1 {
 			.content {
-				border-color: _palette(accent1);
+				border-color: fn.palette(accent1);
 			}
 		}
 
 		&.style2 {
 			.content {
-				border-color: _palette(accent3);
+				border-color: fn.palette(accent3);
 			}
 		}
 
 		&.style3 {
 			.content {
-				border-color: _palette(accent4);
+				border-color: fn.palette(accent4);
 			}
 		}
 
@@ -1273,31 +1266,31 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			}
 
 			.goto-next {
-				@include vendor('transform', 'translate(0,1.5em)');
+				@include vendor.vendor('transform', 'translate(0,1.5em)');
 				opacity: 0;
 			}
 
 			&.top {
 				.content {
-					@include vendor('transform', 'translate(0,-5em)');
+					@include vendor.vendor('transform', 'translate(0,-5em)');
 				}
 			}
 
 			&.bottom {
 				.content {
-					@include vendor('transform', 'translate(0,5em)');
+					@include vendor.vendor('transform', 'translate(0,5em)');
 				}
 			}
 
 			&.left {
 				.content {
-					@include vendor('transform', 'translate(-5em,0)');
+					@include vendor.vendor('transform', 'translate(-5em,0)');
 				}
 			}
 
 			&.right {
 				.content {
-					@include vendor('transform', 'translate(5em,0)');
+					@include vendor.vendor('transform', 'translate(5em,0)');
 				}
 			}
 		}
@@ -1312,13 +1305,13 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Wrapper */
 
 	.wrapper {
-		padding: $size-wrapper-pad-tb 0 ($size-wrapper-pad-tb - _size(element-margin)) 0;
+		padding: $size-wrapper-pad-tb 0 ($size-wrapper-pad-tb - fn.size(element-margin)) 0;
 
 		// &.style1 {
 		// }
 
 		&.style2 {
-			background: _palette(accent1);
+			background: fn.palette(accent1);
 
 			input[type="text"],
 			input[type="password"],
@@ -1326,7 +1319,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			select,
 			textarea {
 				&:focus {
-					border-color: _palette(border2);
+					border-color: fn.palette(border2);
 				}
 			}
 
@@ -1335,27 +1328,27 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			input[type="button"],
 			.button {
 				&:hover, &:active {
-					background-color: _palette(border-bg) !important;
-					box-shadow: inset 0 0 0 1px _palette(border2) !important;
-					color: _palette(fg-bold) !important;
+					background-color: fn.palette(border-bg) !important;
+					box-shadow: inset 0 0 0 1px fn.palette(border2) !important;
+					color: fn.palette(fg-bold) !important;
 				}
 
 				&:active {
-					background-color: _palette(border2-bg) !important;
+					background-color: fn.palette(border2-bg) !important;
 				}
 
 				&.primary {
-					background-color: _palette(fg-bold);
-					color: _palette(accent1) !important;
+					background-color: fn.palette(fg-bold);
+					color: fn.palette(accent1) !important;
 
 					&:hover, &:active {
-						background-color: _palette(border-bg) !important;
-						box-shadow: inset 0 0 0 1px _palette(border2) !important;
-						color: _palette(fg-bold) !important;
+						background-color: fn.palette(border-bg) !important;
+						box-shadow: inset 0 0 0 1px fn.palette(border2) !important;
+						color: fn.palette(fg-bold) !important;
 					}
 
 					&:active {
-						background-color: _palette(border2-bg) !important;
+						background-color: fn.palette(border2-bg) !important;
 					}
 				}
 			}
@@ -1363,14 +1356,14 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.fade-down {
 			> .container {
-				@include vendor('transform', 'translate(0,0)');
-				@include vendor('transition', 'transform 1s ease, opacity 1s ease');
+				@include vendor.vendor('transform', 'translate(0,0)');
+				@include vendor.vendor('transition', 'transform 1s ease, opacity 1s ease');
 				opacity: 1;
 			}
 
 			&.inactive {
 				> .container {
-					@include vendor('transform', 'translate(0,-1em)');
+					@include vendor.vendor('transform', 'translate(0,-1em)');
 					opacity: 0;
 				}
 			}
@@ -1378,14 +1371,14 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.fade-up {
 			> .container {
-				@include vendor('transform', 'translate(0,0)');
-				@include vendor('transition', 'transform 1s ease, opacity 1s ease');
+				@include vendor.vendor('transform', 'translate(0,0)');
+				@include vendor.vendor('transition', 'transform 1s ease, opacity 1s ease');
 				opacity: 1;
 			}
 
 			&.inactive {
 				> .container {
-					@include vendor('transform', 'translate(0,1em)');
+					@include vendor.vendor('transform', 'translate(0,1em)');
 					opacity: 0;
 				}
 			}
@@ -1393,7 +1386,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 		&.fade {
 			> .container {
-				@include vendor('transition', 'opacity 1s ease');
+				@include vendor.vendor('transition', 'opacity 1s ease');
 				opacity: 1;
 			}
 
@@ -1408,8 +1401,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Dropotron */
 
 	.dropotron {
-		background: _palette(accent2-transparent);
-		border-radius: _size(border-radius);
+		background: fn.palette(accent2-transparent);
+		border-radius: fn.size(border-radius);
 		box-shadow: 0 0.075em 0.35em 0 rgba(0,0,0,0.125);
 		list-style: none;
 		margin-top: calc(-0.25em + 1px);
@@ -1422,7 +1415,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 			a, span {
 				border: 0;
-				color: _palette(fg);
+				color: fn.palette(fg);
 				display: block;
 				padding: 0.1em 1em;
 				text-decoration: none;
@@ -1434,7 +1427,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 			&.active {
 				> a, > span {
-					color: _palette(accent1);
+					color: fn.palette(accent1);
 				}
 			}
 		}
@@ -1444,8 +1437,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			margin-top: 1em;
 
 			&:before {
-				@include vendor('transform', 'rotate(45deg)');
-				background: _palette(accent2);
+				@include vendor.vendor('transform', 'rotate(45deg)');
+				background: fn.palette(accent2);
 				content: '';
 				display: block;
 				height: 1em;
@@ -1472,7 +1465,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 	}
 
 	#header {
-		background: _palette(bg);
+		background: fn.palette(bg);
 		box-shadow: 0 0 0.25em 0 rgba(0,0,0,0.25);
 		cursor: default;
 		height: 3.5em;
@@ -1525,7 +1518,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 					&.active {
 						> a, > span {
-							color: _palette(accent1);
+							color: fn.palette(accent1);
 						}
 					}
 
@@ -1543,7 +1536,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		#header {
-			background: _palette(bg);
+			background: fn.palette(bg);
 			box-shadow: none;
 			//position: absolute;
 		}
@@ -1553,7 +1546,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 	#banner {
 		background-attachment: fixed;
-		background-color: _palette(accent2);
+		background-color: fn.palette(accent2);
 		background-image: url('../images/banner.jpg');
 		background-position: center center;
 		background-size: cover;
@@ -1561,7 +1554,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		min-height: 100vh;
 		position: relative;
 		text-align: center;
-		z-index: (_misc(max-spotlight) + 1);
+		z-index: (fn.misc(max-spotlight) + 1);
 
 		&:before {
 			content: '';
@@ -1572,7 +1565,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		}
 
 		&:after {
-			@include vendor('background-image', ('linear-gradient(top, #{_palette(bg-transparent)}, #{_palette(bg-transparent)})', 'url("../css/images/overlay.png");'));
+			@include vendor.vendor('background-image', ('linear-gradient(top, #{fn.palette(bg-transparent)}, #{fn.palette(bg-transparent)})', 'url("../css/images/overlay.png");'));
 			content: '';
 			display: block;
 			height: 100%;
@@ -1602,7 +1595,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 				}
 
 				p {
-					margin: (_size(element-margin) * 0.25) 0 0 0;
+					margin: (fn.size(element-margin) * 0.25) 0 0 0;
 					top: 0;
 				}
 			}
@@ -1633,20 +1626,20 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 /* Footer */
 
 	#footer {
-		background: _palette(accent2);
+		background: fn.palette(accent2);
 		padding: $size-wrapper-pad-tb 0;
 		text-align: center;
 
 		.icons {
 			.icon {
 				&.alt {
-					@include line-icon(_palette(accent2), _palette(fg-light));
+					@include line-icon(fn.palette(accent2), fn.palette(fg-light));
 				}
 			}
 		}
 
 		.copyright {
-			color: _palette(fg-light);
+			color: fn.palette(fg-light);
 			font-size: 0.8em;
 			line-height: 1em;
 			margin: 2em 0 0 0;
@@ -1654,7 +1647,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			text-align: center;
 
 			li {
-				border-left: solid 1px _palette(border);
+				border-left: solid 1px fn.palette(border);
 				display: inline-block;
 				list-style: none;
 				margin-left: 1.5em;
@@ -1675,7 +1668,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 /* XLarge */
 
-	@include breakpoint('<=xlarge') {
+	@include bp.breakpoint('<=xlarge') {
 
 		/* Basic */
 
@@ -1687,7 +1680,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 /* Large */
 
-	@include breakpoint('<=large') {
+	@include bp.breakpoint('<=large') {
 
 		$size-wrapper-pad-tb: 4.5em;
 		$size-wrapper-pad-lr: 2.5em;
@@ -1703,13 +1696,13 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			.spotlight {
 				&.top {
 					.content {
-						padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 0.85) - _size(element-margin)) 0;
+						padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 0.85) - fn.size(element-margin)) 0;
 					}
 				}
 
 				&.bottom {
 					.content {
-						padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 1.1) - _size(element-margin)) 0;
+						padding: ($size-wrapper-pad-tb * 0.85) 0 (($size-wrapper-pad-tb * 1.1) - fn.size(element-margin)) 0;
 					}
 				}
 
@@ -1724,7 +1717,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		/* Wrapper */
 
 			.wrapper {
-				padding: $size-wrapper-pad-tb 0 ($size-wrapper-pad-tb - _size(element-margin)) 0;
+				padding: $size-wrapper-pad-tb 0 ($size-wrapper-pad-tb - fn.size(element-margin)) 0;
 			}
 
 		/* Dropotron */
@@ -1753,7 +1746,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 /* Medium */
 
-	@include breakpoint('<=medium') {
+	@include bp.breakpoint('<=medium') {
 
 		$size-wrapper-pad-tb: 4.5em;
 		$size-wrapper-pad-lr: 2.5em;
@@ -1778,12 +1771,12 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 				}
 
 				.content {
-					background-color: _palette(bg);
+					background-color: fn.palette(bg);
 					border-width: 0 !important;
 					border-top-width: 0.35em !important;
 					bottom: auto !important;
 					left: auto !important;
-					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - _size(element-margin)) $size-wrapper-pad-lr !important;
+					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - fn.size(element-margin)) $size-wrapper-pad-lr !important;
 					position: relative;
 					right: auto !important;
 					text-align: center;
@@ -1791,7 +1784,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 					width: 100% !important;
 
 					ul.actions {
-						@include vendor('justify-content', 'center');
+						@include vendor.vendor('justify-content', 'center');
 						width: 100%;
 						margin-left: 0;
 
@@ -1811,7 +1804,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		/* Wrapper */
 
 			.wrapper {
-				padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - _size(element-margin)) $size-wrapper-pad-lr;
+				padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - fn.size(element-margin)) $size-wrapper-pad-lr;
 			}
 
 		/* Banner */
@@ -1829,7 +1822,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 					header {
 						display: block;
-						margin: 0 0 _size(element-margin) 0;
+						margin: 0 0 fn.size(element-margin) 0;
 						text-align: center;
 					}
 
@@ -1853,7 +1846,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		display: none;
 	}
 
-	@include breakpoint('<=small') {
+	@include bp.breakpoint('<=small') {
 
 		$size-wrapper-pad-tb: 3.25em;
 		$size-wrapper-pad-lr: 1.5em;
@@ -1904,7 +1897,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 				}
 
 				&.major {
-					margin: 0 0 _size(element-margin) 0;
+					margin: 0 0 fn.size(element-margin) 0;
 				}
 			}
 
@@ -1929,14 +1922,14 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 				.content {
 					border-top-width: 0.2em !important;
-					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - _size(element-margin)) $size-wrapper-pad-lr !important;
+					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - fn.size(element-margin)) $size-wrapper-pad-lr !important;
 				}
 			}
 
 		/* Wrapper */
 
 			.wrapper {
-				padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - _size(element-margin)) $size-wrapper-pad-lr;
+				padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - fn.size(element-margin)) $size-wrapper-pad-lr;
 			}
 
 		/* Header */
@@ -1974,29 +1967,29 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 		/* Nav */
 
 			#page-wrapper {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transition', 'transform #{fn.duration(navPanel)} ease');
 				padding-bottom: 1px;
 				padding-top: 44px !important;
 			}
 
 			#titleBar {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transition', 'transform #{fn.duration(navPanel)} ease');
 				display: block;
 				height: 44px;
 				left: 0;
 				position: fixed;
 				top: 0;
 				width: 100%;
-				z-index: _misc(z-index-base) + 1;
-				background: _palette(accent2);
+				z-index: fn.misc(z-index-base) + 1;
+				background: fn.palette(accent2);
 				box-shadow: 0 0.125em 0.125em 0 rgba(0,0,0,0.125);
 
 				.title {
-					color: _palette(fg-bold);
+					color: fn.palette(fg-bold);
 					display: block;
-					font-weight: _font(weight-bold);
+					font-weight: fn.font(weight-bold);
 					height: 44px;
 					line-height: 44px;
 					text-align: center;
@@ -2008,7 +2001,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 				}
 
 				.toggle {
-					@include icon(false, solid);
+					@include mixins.icon(false, solid);
 					height: 60px;
 					left: 0;
 					position: absolute;
@@ -2018,8 +2011,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 					border: 0;
 
 					&:before {
-						background: _palette(accent1);
-						color: _palette(fg-light);
+						background: fn.palette(accent1);
+						color: fn.palette(fg-light);
 						content: '\f0c9';
 						display: block;
 						font-size: 18px;
@@ -2035,24 +2028,24 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			}
 
 			#navPanel {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transform', 'translateX(#{_size(navPanel) * -1})');
-				@include vendor('transition', ('transform #{_duration(navPanel)} ease'));
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transform', 'translateX(#{fn.size(navPanel) * -1})');
+				@include vendor.vendor('transition', ('transform #{fn.duration(navPanel)} ease'));
 				display: block;
 				height: 100%;
 				left: 0;
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
-				width: _size(navPanel);
-				z-index: _misc(z-index-base) + 2;
-				background: darken(_palette(bg), 2);
+				width: fn.size(navPanel);
+				z-index: fn.misc(z-index-base) + 2;
+				background: darken(fn.palette(bg), 2);
 				padding: 0.75em 1.25em;
 
 				.link {
 					border: 0;
-					border-top: solid 1px transparentize(_palette(border), 0.25);
-					color: _palette(fg);
+					border-top: solid 1px transparentize(fn.palette(border), 0.25);
+					color: fn.palette(fg);
 					display: block;
 					height: 3em;
 					line-height: 3em;
@@ -2067,8 +2060,8 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 					}
 
 					&.depth-0 {
-						color: _palette(fg-bold);
-						font-weight: _font(weight-bold);
+						color: fn.palette(fg-bold);
+						font-weight: fn.font(weight-bold);
 					}
 
 					.indent-1 { display: inline-block; width: 1.25em; }
@@ -2082,15 +2075,15 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 			body {
 				&.navPanel-visible {
 					#page-wrapper {
-						@include vendor('transform', 'translateX(#{_size(navPanel)})');
+						@include vendor.vendor('transform', 'translateX(#{fn.size(navPanel)})');
 					}
 
 					#titleBar {
-						@include vendor('transform', 'translateX(#{_size(navPanel)})');
+						@include vendor.vendor('transform', 'translateX(#{fn.size(navPanel)})');
 					}
 
 					#navPanel {
-						@include vendor('transform', 'translateX(0)');
+						@include vendor.vendor('transform', 'translateX(0)');
 					}
 				}
 			}
@@ -2105,7 +2098,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 
 /* XSmall */
 
-	@include breakpoint('<=xsmall') {
+	@include bp.breakpoint('<=xsmall') {
 
 		$size-wrapper-pad-tb: 3em;
 		$size-wrapper-pad-lr: 1.25em;
@@ -2137,7 +2130,7 @@ $theme: 'light'; // Change this to 'light' to switch to the light theme
 				}
 
 				.content {
-					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - _size(element-margin)) $size-wrapper-pad-lr !important;
+					padding: $size-wrapper-pad-tb $size-wrapper-pad-lr ($size-wrapper-pad-tb - fn.size(element-margin)) $size-wrapper-pad-lr !important;
 				}
 			}
 
