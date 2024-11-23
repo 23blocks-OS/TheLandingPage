@@ -201,6 +201,4 @@ The original template is licensed under the [Creative Commons Attribution 3.0 Li
 - You are free to share, modify, and adapt this work for personal or commercial purposes.
 - Attribution is required. If you use this project, please credit:
   - HTML5 UP for the original template.
-  - 23blocks for modifications and additional development.
-
-For more information, visit the [HTML5 UP](https://html5up.net) website.
+  - 23blocks for modifications, upgrades and additional development.

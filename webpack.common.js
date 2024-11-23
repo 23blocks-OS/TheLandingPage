@@ -50,6 +50,14 @@ module.exports = {
                                             './src/**/*.tsx',
                                             './src/**/*.vue',
                                         ],
+                                        safelist: [
+                                            /^depth-/,
+                                            /^indent-/,
+                                            /^link/,
+                                            /^toggle/,
+                                            /^goto-next/,
+                                            /^navPanel/,
+                                        ],
                                         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
                                     })
                                 ],
