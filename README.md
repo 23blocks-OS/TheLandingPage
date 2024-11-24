@@ -184,13 +184,7 @@ This isn’t about a tool or a template. It’s about freedom. Freedom to create
 
 If this works for you, great. If not, also great—I’ll be testing my next 100 ideas while you’re still deciding on a Wix template.  
 
-## Feedback  
-Love it? Hate it? Found a bug?  
-Shoot me an email: **support@23blocks.com**  
-
-Let’s see how this goes.  
-
-### Geek Corner  
+## Geek Corner  
 
 If you're geeky enough to scroll down this far, welcome. Here's the behind-the-scenes look at the tech that powers this project. It's built to be **easy for you**, the user, but that doesn’t mean we’ve skimped on the modern tools, techniques, and wizardry that make websites fast, SEO-friendly, and downright effective. After all, this isn’t our first rodeo—we’ve been building high-performance, millions-of-users kind of sites for years.  
 
@@ -216,6 +210,12 @@ Here’s what all that geeky goodness boils down to:
 - A pipeline to **build and optimize everything** into a shiny `dist` folder.  
 
 That’s it. Now, just deploy the `dist` folder to your favorite hosting platform, hook it up to your domain (see **How to Deploy**), and you’re live.
+
+## Feedback  
+Love it? Hate it? Found a bug?  
+Shoot me an email: **support@23blocks.com**  
+
+Let’s see how this goes.  
 
 ### Got Questions?  
 Head to **Feedback** or drop us a line on GitHub. And if you just came here to geek out, welcome to the club. 🚀
