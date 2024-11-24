@@ -189,6 +189,36 @@ Shoot me an email: **support@23blocks.com**
 
 Let’s see how this goes.  
 
+### Geek Corner  
+
+If you're geeky enough to scroll down this far, welcome. Here's the behind-the-scenes look at the tech that powers this project. It's built to be **easy for you**, the user, but that doesn’t mean we’ve skimped on the modern tools, techniques, and wizardry that make websites fast, SEO-friendly, and downright effective. After all, this isn’t our first rodeo—we’ve been building high-performance, millions-of-users kind of sites for years.  
+
+So, here’s the breakdown of how we built this thing:  
+
+1. **HTML5:**  
+   The OG of web development—clear, simple, and rock-solid. Bonus: we threw in lazy loading right out of the gate because why make your users download things they aren’t looking at yet?
+
+2. **Sass:**  
+   I know, I know—Sass sounds fancy and complicated, but it’s not. Hear me out. Sass lets us use variables, which means themes, which means a *single* place to tweak colors, fonts, and more. Change once, and it’s done everywhere. It’s like having a universal remote for your styles.
+
+3. **Webpack:**  
+   "Wait, wasn’t this about going back to basics?" Yes, but hear me out. Webpack is the magic wand that minifies your code, bundles your files, creates chunks, optimizes images, and purges unused styles. It’s like the Swiss Army knife of modern web development. Plus, it’s the secret sauce behind your ultra-fast landing page.
+
+4. **Service Worker:**  
+   "Service what now?" Yes, service workers. They’re the invisible superheroes of the web—handling caching and speeding up load times like nobody’s business. Your users will see your landing page faster than they can say, “Where’s my wallet?”
+
+### What You Get  
+
+Here’s what all that geeky goodness boils down to:  
+- A responsive, lightweight **HTML5 template**.  
+- A clever, simple **Sass file** that compiles into a sleek CSS grid with themes.  
+- A pipeline to **build and optimize everything** into a shiny `dist` folder.  
+
+That’s it. Now, just deploy the `dist` folder to your favorite hosting platform, hook it up to your domain (see **How to Deploy**), and you’re live.
+
+### Got Questions?  
+Head to **Feedback** or drop us a line on GitHub. And if you just came here to geek out, welcome to the club. 🚀
+
 ## License  
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.  
 
