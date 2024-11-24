@@ -62,8 +62,9 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
    ```bash  
    cd solution-folder  
    ```  
-3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake)):  
+3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake. Tip: We add .nvmrc, so you can just run nvm use)):  
    ```bash  
+   nvm use
    npm install  
    ```  
 4. Start the local server:  
