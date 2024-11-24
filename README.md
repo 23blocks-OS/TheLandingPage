@@ -56,11 +56,11 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
 ### How to Develop Locally  
 1. Clone the repo:  
    ```bash  
-   git clone <repo-url>  
+   git clone git@github.com:23blocks-OS/TheLandingPage.git  
    ```  
 2. Go to the folder:  
    ```bash  
-   cd solution-folder  
+   cd TheLandingPage  
    ```  
 3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake. Tip: We add .nvmrc, so you can just run nvm use)):  
    ```bash  
@@ -104,7 +104,7 @@ There are two main building blocks here: **Spotlight** and **Wrapper**. Think of
 ```
 - **Use Case:** Ideal for sections without navigation arrows or those with longer content that doesn’t fit the predefined container.  
 
-## Marketing Guide. 
+## Marketing Guide 
 The whole point of this Landing Page is simple: remove the decision fatigue. We’ve done the homework for you, so you don’t have to spend hours debating layouts, fonts, or which shade of orange converts best.
 
 This template is built on proven best practices—everything you need for a high-performing landing page, and nothing you don’t. Every section is crafted to guide your visitors from curious to convinced, with minimal effort on your part.
@@ -146,8 +146,6 @@ Hit them with a clear, direct CTA. *“Get Started Now”* or *“Launch Your La
 ### **9. Footer**  
 The unsung hero of navigation.  
 It’s where the details live: social links, policies, contact info, and maybe a bonus CTA. Keep it functional, not fancy. Nobody’s here to admire your footer design.
-
-Here’s a refined version of your **Advanced Use** section:
 
 ## **Advanced Use**  
 Want to take things to the next level? You can easily transform this landing page into a multi-page website.  
