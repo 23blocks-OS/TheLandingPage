@@ -45,33 +45,36 @@ Want images? Drop them in a folder. Just make sure they’re the same size as th
 
 And don’t forget the header info. It’s all there. SEO, social sharing, you name it.  
 
-## Development Guide  
+## How to Use
+### How to Use this template
+1. Create Your Own Repository from This Template
 
-### How to Change the Content  
-1. Open the HTML file.  
-2. Change the text and links—just like the old days.  
-3. Replace placeholder images in the `images` folder. Same size, remember?  
-4. Update the metadata in `<head>` for modern internet magic.  
+   - Click the "Use this template" button on the repository page.
+   - Name your new repository (e.g., MyLandingPage).
+   - Choose whether to make it public or private.
+   - Click "Create repository from template".
 
-### How to Develop Locally  
-1. Clone the repo:  
+2. Clone your own repository
    ```bash  
-   git clone git@github.com:23blocks-OS/TheLandingPage.git  
+   git clone git@github.com:YourUserName/TheLandingPage.git  
    ```  
-2. Go to the folder:  
+   Go to the folder:  
    ```bash  
    cd TheLandingPage  
    ```  
+
 3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake. Tip: We add .nvmrc, so you can just run nvm use)):  
    ```bash  
    nvm use
    npm install  
    ```  
-4. Start the local server:  
+
+4. Run the local development server:  
    ```bash  
    npm start  
    ```  
-5. Preview your changes locally.  
+
+5. Preview changes live in your browser
 
 ### How to Build and Test  
 1. Build the project:  
@@ -82,6 +85,11 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
    ```bash  
    npx http-server dist  
    ```  
+### How to Change the Landing Page Content  
+1. Open the HTML file.  
+2. Change the text and links—just like the old days.  
+3. Replace placeholder images in the `images` folder. Same size, remember?  
+4. Update the metadata in `<head>` for modern internet magic.  
 
 ## **Designer Guide**  
 Everything you need to tweak and manage this page lives inside the `<section>` divs.  
