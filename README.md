@@ -56,11 +56,11 @@ And don’t forget the header info. It’s all there. SEO, social sharing, you n
 
 2. Clone your own repository
    ```bash  
-   git clone git@github.com:YourUserName/TheLandingPage.git  
+   git clone git@github.com:YourUserName/MyLandingPage.git  
    ```  
    Go to the folder:  
    ```bash  
-   cd TheLandingPage  
+   cd MyLandingPage  
    ```  
 
 3. Install Node dependencies (yes, you need Node (version 22 works, use nvm for good sake. Tip: We add .nvmrc, so you can just run nvm use)):  
@@ -170,6 +170,7 @@ This version keeps the tone light and engaging while making the instructions cle
 ## How to Deploy  
 
 ### Using AWS Amplify  
+### Conecting your own repository 
 1. Push your project to a GitHub repo.  
 2. Open AWS Amplify, create a new app, and connect it to your repo.  
 3. Select a branch. Let Amplify do its thing.  
@@ -179,11 +180,29 @@ This version keeps the tone light and engaging while making the instructions cle
    - Wait for DNS propagation.  
 5. Done. Your landing page is live under your domain.  
 
-### Using S3 (Not Ideal, but Hey)  
+#### Uploading a ZIP File to AWS Amplify
+Guide also coming soon. Patience, my friend.  
+
+### Using AWS S3 (Not Ideal, but Hey)  
 Guide coming soon.  
 
-### Uploading a ZIP File  
-Guide also coming soon. Patience, my friend.  
+### Using GitHub Pages. 
+Working on it. 
+
+### Using GitLab Pages. 
+Working on it. 
+
+### Using Netlify
+Looking for help
+
+### Using Cloudflare Pages. 
+Another free option. 
+
+## Using your own server. 
+If you really, really want...
+
+### Using your own server at home 
+Almost there. 
 
 ## Why This Matters  
 This isn’t about a tool or a template. It’s about freedom. Freedom to create, test, and fail without worrying about overpriced subscriptions or getting lost in decision hell.  
