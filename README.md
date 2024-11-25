@@ -165,8 +165,6 @@ Here’s how:
 
 And just like that—**boom**—you’ve got a multi-page website! Whether it’s for FAQs, a blog, or a pricing page, the setup is quick and seamless.  
 
-This version keeps the tone light and engaging while making the instructions clear and actionable. Let me know if you need further refinement!
-
 ## How to Deploy  
 
 ### Using AWS Amplify  
