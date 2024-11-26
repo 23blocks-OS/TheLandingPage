@@ -8,6 +8,10 @@ import './assets/js/breakpoints.min.js';
 import './assets/js/util.js';
 import './assets/js/main.js';
 
+// API Calls. ie. Subscribe form 
+import "./formsHandlers.js";
+
+// Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
