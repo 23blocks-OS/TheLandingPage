@@ -1,4 +1,4 @@
-import { FORM_CONFIG } from "./config";
+import { FORM_CONFIG } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Newsletter Form Handler
@@ -12,9 +12,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const { apiUrl, apiToken } = FORM_CONFIG.newsletterForm;
 
       const email = newsletterForm.email.value.trim();
+
+      // Updated email regex to support subdomains
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      
       if (!email) {
-        messageElement.textContent = "Please enter a valid email address.";
-        messageElement.style.color = "red";
+        messageElement.classList.remove("success");
+        messageElement.classList.add("error");
+        messageElement.textContent = "Please enter an email address.";        
+        messageElement.style.display = "block";
+        return;
+      }
+      
+      if (!emailRegex.test(email)) {
+        messageElement.classList.remove("success");
+        messageElement.classList.add("error");
+        messageElement.textContent = "Please enter a valid email address (e.g., john@domain.com).";      
         messageElement.style.display = "block";
         return;
       }
@@ -32,21 +45,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.ok) {
-          messageElement.textContent = "Thanks for subscribing!";
-          messageElement.style.color = "green";
+          messageElement.classList.remove("error");
+          messageElement.classList.add("success");
+          messageElement.textContent = "Thanks for subscribing!";          
           messageElement.style.display = "block";
           newsletterForm.reset();
         } else {
           const error = await response.json();
+          messageElement.classList.remove("success");
+          messageElement.classList.add("error");
           messageElement.textContent =
-            error.message || "Something went wrong. Please try again.";
-          messageElement.style.color = "red";
+            error.message || "Something went wrong. Please try again.";          
           messageElement.style.display = "block";
         }
       } catch (error) {
+        messageElement.classList.remove("success");
+        messageElement.classList.add("error");
         messageElement.textContent =
-          "Unable to connect. Please try again later.";
-        messageElement.style.color = "red";
+          "Unable to connect. Please try again later.";        
         messageElement.style.display = "block";
       }
     });

@@ -1,5 +1,5 @@
 // src/config.js
-export const CONFIG = {
+export const FORM_CONFIG = {
     newsletterForm: {
       apiUrl: "https://api.example.com/newsletter",
       apiToken: "newsletter-secret-token",
